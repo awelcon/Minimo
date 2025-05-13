@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Lifestyle - MinimØ</title>
+</head>
+<body>
+  <header class="main-header">
+    <div class="main-navigation-bar wrapper-width-container">
+      <div class="main-navigation-bar__logo">
+        <a href="index.html">MinimØ</a>
+        <p style="font-family: 'Ubuntu', sans-serif; font-size: 14px; color: #626262; margin-top: 5px;">MinimØ-headache</p>
+      </div>
+      <nav class="main-menu">
+        <div class="container-burger" id="burger_menu">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+        <ul id="main-menu-mobile">
+          <li><a href="lifestyle.html" class="active" style="border-bottom: 2px solid #B4AD9E;">Lifestyle</a></li>
+          <li><a href="photodiary.html">Photodiary</a></li>
+          <li><a href="music.html">Music</a></li>
+          <li style="margin-left: auto;"><a href="register.html">Sign Up</a></li>
+          <li class="theme-switch-wrapper">
+            <label class="theme-switch" for="theme-switch">
+              <input type="checkbox" id="theme-switch" onchange="toggleTheme()" />
+              <div class="slider"></div>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrapper-width-container">
+      <article class="first-post">
+        <div class="first-post__image">
+          <img src="https://images.pexels.com/photos/341858/pexels-photo-341858.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1500" alt="Lifestyle">
+        </div>
+        <div class="content-first-post blog-wrapper-width">
+          <div class="content-first-post__tag">
+            <div class="tag-item">
+              <a href="#" class="blog-tag">Lifestyle</a>
+            </div>
+          </div>
+          <div class="content-first-post__text">
+            <h2>More than just a music festival</h2>
+            <p class="blog-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
+      </article>
+
+      <div class="blog-wrapper-width">
+        <div class="row-articles">
+          <div class="post-view">
+            <article class="card-post">
+              <div class="card-post__image">
+                <img src="https://images.pexels.com/photos/64775/pexels-photo-64775.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1500" alt="Coffee">
+              </div>
+              <div class="card-post__tag">
+                <div class="tag-item">
+                  <a href="#" class="blog-tag">Lifestyle</a>
+                </div>
+              </div>
+              <div class="card-post__text">
+                <h2>Life tastes better with coffee</h2>
+                <p class="blog-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="newsletter-container">
+      <div class="blog-wrapper-width newsletter-content">
+        <h3 class="newsletter-content__title">Sign up for our newsletter</h3>
+        <form class="newsletter-form" action="">
+          <input class="newsletter-form__email" type="email" name="email" required placeholder="email">
+          <button type="submit" class="newsletter-submit_button"></button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <div class="wrapper-width-container">
+      <div class="blog-wrapper-width main-footer-content">
+        <div class="main-footer-pages">
+          <p>Terms and conditions</p>
+          <p>Privacy</p>        
+        </div>        
+        <div class="main-footer-social">
+          <p>Follow</p>
+          <a href="#" class="icon-facebook"></a>
+          <a href="#" class="icon-twitter"></a>
+          <a href="#" class="icon-instagram"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
