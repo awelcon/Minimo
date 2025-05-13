@@ -44,140 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', reveal);
 });
 
-// AJAX Navigation with Theme Support
-document.addEventListener('DOMContentLoaded', function() {
-    const mainContent = document.querySelector('main');
-    if (!mainContent) return;
-
-    // Add initial transition class
-    mainContent.classList.add('page-transition');
-
-    const links = document.querySelectorAll('.main-menu a');
-
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const href = this.getAttribute('href');
-            if (!href) return;
-            
-            // Add fade out animation
-            mainContent.classList.remove('page-transition');
-            mainContent.classList.add('page-transition-out');
-            
-            // Wait for fade out animation to complete
-            setTimeout(() => {
-                // Show loading indicator
-                mainContent.innerHTML = '<div class="loading">Loading...</div>';
-                
-                // Fetch the new page content
-                fetch(href)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        return response.text();
-                    })
-                    .then(html => {
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, 'text/html');
-                        const newContent = doc.querySelector('main');
-                        if (!newContent) {
-                            throw new Error('No main content found in the new page');
-                        }
-                        
-                        // Update the URL without reloading
-                        history.pushState({}, '', href);
-                        
-                        // Update the content
-                        mainContent.innerHTML = newContent.innerHTML;
-                        
-                        // Add fade in animation
-                        mainContent.classList.remove('page-transition-out');
-                        mainContent.classList.add('page-transition');
-                        
-                        // Update page title
-                        document.title = doc.title;
-                        
-                        // Reinitialize theme
-                        initTheme();
-                        
-                        // Update theme switch state
-                        const themeSwitch = document.getElementById('theme-switch');
-                        if (themeSwitch) {
-                            themeSwitch.checked = document.documentElement.getAttribute('data-theme') === 'dark';
-                        }
-                        
-                        // Add reveal class to new elements and trigger reveal
-                        const articles = mainContent.querySelectorAll('article');
-                        articles.forEach(article => {
-                            article.classList.add('reveal');
-                        });
-                        reveal();
-                    })
-                    .catch(error => {
-                        console.error('Error loading page:', error);
-                        window.location.href = href;
-                    });
-            }, 300);
-        });
-    });
-
-    // Handle browser back/forward buttons
-    window.addEventListener('popstate', function() {
-        const currentPath = window.location.pathname;
-        
-        // Add fade out animation
-        mainContent.classList.remove('page-transition');
-        mainContent.classList.add('page-transition-out');
-        
-        setTimeout(() => {
-            fetch(currentPath)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const newContent = doc.querySelector('main');
-                    if (!newContent) {
-                        throw new Error('No main content found in the new page');
-                    }
-                    
-                    mainContent.innerHTML = newContent.innerHTML;
-                    
-                    // Add fade in animation
-                    mainContent.classList.remove('page-transition-out');
-                    mainContent.classList.add('page-transition');
-                    
-                    document.title = doc.title;
-                    
-                    // Reinitialize theme
-                    initTheme();
-                    
-                    // Update theme switch state
-                    const themeSwitch = document.getElementById('theme-switch');
-                    if (themeSwitch) {
-                        themeSwitch.checked = document.documentElement.getAttribute('data-theme') === 'dark';
-                    }
-                    
-                    // Add reveal class to new elements and trigger reveal
-                    const articles = mainContent.querySelectorAll('article');
-                    articles.forEach(article => {
-                        article.classList.add('reveal');
-                    });
-                    reveal();
-                })
-                .catch(error => {
-                    console.error('Error loading page:', error);
-                    window.location.reload();
-                });
-        }, 300);
-    });
-});
-
 // Highlight current page in menu
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -197,25 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Add loading styles
-const style = document.createElement('style');
-style.textContent = `
-    .loading {
-        text-align: center;
-        padding: 2rem;
-        font-size: 1.2rem;
-        color: var(--first-color);
-    }
-    .error {
-        text-align: center;
-        padding: 2rem;
-        color: red;
-    }
-`;
-document.head.appendChild(style);
-
 // Burger menu for mobile navigation
-
 document.addEventListener('DOMContentLoaded', function() {
     const burger = document.getElementById('burger_menu');
     const menu = document.getElementById('main-menu-mobile');
@@ -234,4 +82,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-}); 
+});
+
+// Add loading styles
+const style = document.createElement('style');
+style.textContent = `
+    .loading {
+        text-align: center;
+        padding: 2rem;
+        font-size: 1.2rem;
+        color: var(--first-color);
+    }
+    .error {
+        text-align: center;
+        padding: 2rem;
+        color: red;
+    }
+`;
+document.head.appendChild(style); 
